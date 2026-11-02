@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">ValkyOS symbol</title>
+  <desc id="desc">Minimal futuristic V formed by two flowing geometric strokes.</desc>
+  <defs>
+    <linearGradient id="left" x1="290" y1="210" x2="512" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C9D4E8"/>
+    </linearGradient>
+    <linearGradient id="right" x1="734" y1="210" x2="512" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#725CFF"/>
+      <stop offset="0.66" stop-color="#526CFF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#left)" d="M176 190C337 210 456 322 512 760 427 594 353 463 284 355 247 297 210 239 176 190Z"/>
+  <path fill="url(#right)" d="M848 190C687 210 568 322 512 760 597 594 671 463 740 355 777 297 814 239 848 190Z"/>
+</svg>

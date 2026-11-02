@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">ValkyOS logo</title>
+  <desc id="desc">Minimal futuristic V with the ValkyOS wordmark.</desc>
+  <defs>
+    <linearGradient id="left" x1="400" y1="120" x2="600" y2="590" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#C9D4E8"/>
+    </linearGradient>
+    <linearGradient id="right" x1="800" y1="120" x2="600" y2="590" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#725CFF"/>
+      <stop offset="0.66" stop-color="#526CFF"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#left)" d="M290 128C435 146 542 247 600 590 522 458 455 354 394 269 359 220 323 172 290 128Z"/>
+  <path fill="url(#right)" d="M910 128C765 146 658 247 600 590 678 458 745 354 806 269 841 220 877 172 910 128Z"/>
+  <text x="600" y="748" fill="#F6F8FC" font-family="Inter, Montserrat, Arial, sans-serif" font-size="128" font-weight="500" letter-spacing="-5" text-anchor="middle">ValkyOS</text>
+</svg>
