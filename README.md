@@ -9,8 +9,12 @@ Common branding and product configuration for ValkyOS.
 - Boot animation: 1220 x 2712 at 30 FPS
 - Initial device: Motorola Edge 50 Pro (`eqe`)
 
-The Android product must inherit `vendor/valkyos/config/common.mk`.
+The Android product inherits `vendor/valkyos/config/common.mk` for the ValkyOS
+version properties.
 
-The generated `bootanimation.zip` is installed in
-`$(TARGET_COPY_OUT_PRODUCT)/media/bootanimation.zip` so it takes precedence over
-the base system animation without replacing LineageOS source files.
+The device BoardConfig selects the generated animation through LineageOS's
+supported variable:
+
+```make
+TARGET_BOOTANIMATION := vendor/valkyos/bootanimation/bootanimation.zip
+```
