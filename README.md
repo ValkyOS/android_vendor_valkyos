@@ -18,3 +18,7 @@ supported variable:
 ```make
 TARGET_BOOTANIMATION := vendor/valkyos/bootanimation/bootanimation.zip
 ```
+
+The compatibility patches and OpenEUICC dependencies required by the initial
+Android 17 base are reproduced by `build/setup-valkyos.sh`. See
+`build/README.md`.

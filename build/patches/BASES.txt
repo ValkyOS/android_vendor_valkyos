@@ -1,0 +1,31 @@
+origen_paquete=lineage-a17-repro-20260925-final
+origen_ruta=C:/Users/DVY/Documents/Claude/Projects/Crdroid/Kernel-A17/Compatibilidad-LineageOS-A17/lineage-a17-repro-20260925-final/patches
+origen_rom_sha256=bf2ebe97443a06063c2f0bb01366ca94aa61d2e8afa07b0287ab456d14216195
+copia_fecha=2026-11-02
+verificacion_fecha=2026-11-02
+aplicado=no
+compilado=no
+
+parche=frameworks-av-libheif.patch
+destino=frameworks/av
+base=5f059f6bd2ffc720423b2f4359696a750970a86b
+base_fecha=2026-09-18T22:58:28Z
+sha256=801648b05a2bba3aeb96417f7e2131249d6d0dc83a6af3399e49889d78a741bc
+bytes=37646
+archivos=5
+lineas_agregadas=1102
+lineas_eliminadas=0
+head_lineage_24_0_verificado=937eb9047ec2f88620f1f6a4d9e407f6c869d91a
+nota=media/libheif no existe en el HEAD verificado; el parche solo crea archivos nuevos
+
+parche=frameworks-native-a16-abi.patch
+destino=frameworks/native
+base=46018f54b42489de960c62c3db9de131abce43ea
+base_fecha=2026-09-20T22:08:08Z
+sha256=cb63ccbbc2f4d0436f6290a337701f9adad8b947f392aca2b494f3cc283da1c9
+bytes=2247
+archivos=2
+lineas_agregadas=16
+lineas_eliminadas=0
+head_lineage_24_0_verificado=46018f54b42489de960c62c3db9de131abce43ea
+nota=el HEAD verificado coincide con la base; git apply --check pasó sobre los archivos reales
