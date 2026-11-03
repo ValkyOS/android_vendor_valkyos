@@ -2,3 +2,6 @@
 # SPDX-License-Identifier: Apache-2.0
 
 $(call inherit-product, vendor/valkyos/config/version.mk)
+
+PRODUCT_PACKAGES += \
+    ValkyOSLineagePlatformOverlay
