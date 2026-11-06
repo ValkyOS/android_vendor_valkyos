@@ -10,9 +10,13 @@ The script:
 
 1. verifies and applies the `frameworks/av` libheif compatibility patch;
 2. verifies and applies the Android 16 `SurfaceComposerClient` ABI bridge;
-3. installs the pinned OpenEUICC Maven dependencies from Maven Central;
-4. hides the historical OpenEUICC template so Soong sees one definition;
-5. verifies every patch and downloaded file by SHA-256.
+3. makes the Motorola camera helper (`libmot_chi_desktop_helper.so`) load
+   LineageOS `libgui_buffer_shim_vendor` instead of `libgui_vendor`, restoring
+   the Android 15/16 `BufferItemConsumer` ABI (the original blob is verified by
+   SHA-256 first; needs `patchelf`);
+4. installs the pinned OpenEUICC Maven dependencies from Maven Central;
+5. hides the historical OpenEUICC template so Soong sees one definition;
+6. verifies every patch and downloaded file by SHA-256.
 
 It can be run again safely. Already applied patches and valid dependencies are
 verified instead of being applied or downloaded twice.
