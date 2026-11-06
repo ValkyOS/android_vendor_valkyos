@@ -291,7 +291,9 @@ install_motocamera_policy
 MAVEN_DIR="$ROM_ROOT/packages/apps/OpenEUICC/app-deps/maven"
 [[ -d "$ROM_ROOT/packages/apps/OpenEUICC/.git" ]] || fail "falta OpenEUICC"
 mkdir -p "$MAVEN_DIR"
-install -m 0644 "$SCRIPT_DIR/openeuicc/Android.bp" "$MAVEN_DIR/Android.bp"
+# Stored as .template: a file named Android.bp inside vendor/valkyos would be
+# parsed by Soong and duplicate the modules installed into OpenEUICC.
+install -m 0644 "$SCRIPT_DIR/openeuicc/Android.bp.template" "$MAVEN_DIR/Android.bp"
 
 TEMP_DIR="$(mktemp -d)"
 trap 'rm -rf "$TEMP_DIR"' EXIT
