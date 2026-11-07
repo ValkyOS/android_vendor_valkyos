@@ -349,5 +349,62 @@ printf '%s  %s\n' "$ZXING_AAR_SHA256" \
 printf '%s  %s\n' "$ZXING_JAR_SHA256" \
     "$MAVEN_DIR/core-3.4.1.jar" | sha256sum -c -
 
+# Vanadium replaces the LineageOS browser (Jelly) and WebView. The GrapheneOS
+# prebuilt repository is used as is; only the "overrides" lines are added so
+# the build leaves Jelly and the LineageOS webview out, and the optional
+# android.ext.adservices library (not visible in LineageOS) is dropped.
+add_vanadium_overrides() {
+    local bp="$ROM_ROOT/external/vanadium/Android.bp"
+    [[ -f "$bp" ]] || fail "falta external/vanadium (Vanadium de GrapheneOS)"
+    python3 - "$bp" <<'PYEOF'
+import sys
+path = sys.argv[1]
+text = open(path).read()
+marker = "// ValkyOS overrides"
+if marker in text:
+    print("YA_APLICADO: Vanadium overrides")
+    sys.exit(0)
+targets = {
+    'name: "TrichromeChrome",': '["Jelly", "Browser2"]',
+    'name: "TrichromeWebView",': '["webview"]',
+}
+for line, value in targets.items():
+    if text.count("    " + line + "\n") != 1:
+        sys.exit("ERROR: no se encontro " + line + " en " + path)
+    text = text.replace("    " + line + "\n",
+                        "    " + line + "\n\n    " + marker + "\n"
+                        "    enforce_uses_libs: false,\n"
+                        "    overrides: " + value + ",\n", 1)
+# android.ext.adservices (optional library) is not visible to these modules in
+# LineageOS; the apps work without it.
+text = text.replace('        "android.ext.adservices",\n', "")
+open(path, "w").write(text)
+print("APLICADO: Vanadium overrides")
+PYEOF
+}
+
+# vendor/lineage/overlay/common is turned into a runtime overlay (RRO) and wins
+# over our static overlay, so LineageOS' WebView list (com.android.webview) was
+# used at boot. With that package removed, system_server crashed with "No
+# available by default WebView Provider" and the phone boot-looped (V27/V28).
+# Replace LineageOS' list with ours so Vanadium is the only provider.
+set_vanadium_webview_config() {
+    local src="$ROM_ROOT/vendor/valkyos/overlay/no-rro/frameworks/base/core/res/res/xml/config_webview_packages.xml"
+    local dst="$ROM_ROOT/vendor/lineage/overlay/common/frameworks/base/core/res/res/xml/config_webview_packages.xml"
+    [[ -f "$src" ]] || fail "falta $src"
+    [[ -f "$dst" ]] || fail "falta $dst"
+    if cmp -s "$src" "$dst"; then
+        echo "YA_APLICADO: lista WebView de Vanadium"
+    else
+        cp "$src" "$dst"
+        echo "APLICADO: lista WebView de Vanadium"
+    fi
+}
+
+echo
+echo "== Vanadium =="
+add_vanadium_overrides
+set_vanadium_webview_config
+
 echo
 echo "CONFIGURACION_VALKYOS=OK"
