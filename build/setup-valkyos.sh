@@ -70,6 +70,13 @@ apply_compat_patch \
     "frameworks/native" \
     "$NATIVE_REVISION" \
     "$PATCH_DIR/frameworks-native-a16-abi.patch"
+# Sensors permission (GrapheneOS OTHER_SENSORS): sensors without their own
+# permission require android.permission.OTHER_SENSORS; denials are reported to
+# the system so it can notify the user.
+apply_compat_patch \
+    "frameworks/native" \
+    "$NATIVE_REVISION" \
+    "$PATCH_DIR/frameworks-native-sensors.patch"
 
 # Motorola camera helper built against the Android 15/16 libgui ABI. LineageOS
 # provides libgui_buffer_shim_vendor, which exports the old

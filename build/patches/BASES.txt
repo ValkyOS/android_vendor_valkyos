@@ -29,3 +29,10 @@ lineas_agregadas=16
 lineas_eliminadas=0
 head_lineage_24_0_verificado=46018f54b42489de960c62c3db9de131abce43ea
 nota=el HEAD verificado coincide con la base; git apply --check pasó sobre los archivos reales
+
+parche=frameworks-native-sensors.patch
+destino=frameworks/native
+base=46018f54b42489de960c62c3db9de131abce43ea
+origen=GrapheneOS platform_frameworks_native rama 17: 3a6057f01f 8dfa123c2a 24ef4ca9e7 ee5bdc0ea8 0aaefdd08d
+archivos=2 (libs/sensor/Sensor.cpp, services/sensorservice/SensorService.cpp)
+nota=permiso Sensores (OTHER_SENSORS); requiere IPackageManagerNative.onDeniedSpecialRuntimePermissionOp en frameworks/base (lote 38)
