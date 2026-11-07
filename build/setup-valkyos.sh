@@ -11,8 +11,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PATCH_DIR="$SCRIPT_DIR/patches"
 ROM_ROOT="${1:-$(pwd)}"
 
-AV_REVISION="937eb9047ec2f88620f1f6a4d9e407f6c869d91a"
-NATIVE_REVISION="46018f54b42489de960c62c3db9de131abce43ea"
+AV_REVISION="1c5914737a1a89d0c5b3e52e8289019eab3f8cbf"
+NATIVE_REVISION="a96adf2c6e62dbb22299cd83bbb9ea4bc569e985"
 
 ZXING_AAR_URL="https://repo.maven.apache.org/maven2/com/journeyapps/zxing-android-embedded/4.3.0/zxing-android-embedded-4.3.0.aar"
 ZXING_AAR_SHA256="4ab03353127c34e55cbb80fbc9a34031decbcfb1ec5e8f991944d2d494621a33"

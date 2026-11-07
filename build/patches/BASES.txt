@@ -36,3 +36,7 @@ base=46018f54b42489de960c62c3db9de131abce43ea
 origen=GrapheneOS platform_frameworks_native rama 17: 3a6057f01f 8dfa123c2a 24ef4ca9e7 ee5bdc0ea8 0aaefdd08d
 archivos=2 (libs/sensor/Sensor.cpp, services/sensorservice/SensorService.cpp)
 nota=permiso Sensores (OTHER_SENSORS); requiere IPackageManagerNative.onDeniedSpecialRuntimePermissionOp en frameworks/base (lote 38)
+
+actualizacion=2026-11-07 (parche de seguridad 2026-11-01 de LineageOS)
+frameworks/av=1c5914737a1a89d0c5b3e52e8289019eab3f8cbf (frameworks-av-libheif.patch: git apply --check OK)
+frameworks/native=a96adf2c6e62dbb22299cd83bbb9ea4bc569e985 (frameworks-native-a16-abi.patch y frameworks-native-sensors.patch: git apply --check OK)
