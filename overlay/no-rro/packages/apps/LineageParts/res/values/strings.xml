@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="lineageparts_title">ValkyOS Settings</string>
+    <string name="privacy_settings_category" translatable="false">ValkyOS</string>
+    <string name="egg_title" translatable="false">ValkyOS Easter Egg</string>
+    <!-- ValkyOS: no LineageOS statistics upload (empty URL, the upload fails locally). -->
+    <string name="stats_lineage_url" translatable="false"></string>
+</resources>

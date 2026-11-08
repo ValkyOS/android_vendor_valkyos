@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<wallpapers>
+    <category id="valkyos" title="@string/valkyos_category" thumbnail="@drawable/valkyos_wallpaper_1_thumb">
+        <static-wallpaper id="valkyos_wallpaper_1" src="@drawable/valkyos_wallpaper_1" thumbnail="@drawable/valkyos_wallpaper_1_thumb" />
+        <static-wallpaper id="valkyos_wallpaper_2" src="@drawable/valkyos_wallpaper_2" thumbnail="@drawable/valkyos_wallpaper_2_thumb" />
+        <static-wallpaper id="valkyos_wallpaper_3" src="@drawable/valkyos_wallpaper_3" thumbnail="@drawable/valkyos_wallpaper_3_thumb" />
+        <static-wallpaper id="valkyos_wallpaper_4" src="@drawable/valkyos_wallpaper_4" thumbnail="@drawable/valkyos_wallpaper_4_thumb" />
+        <static-wallpaper id="valkyos_wallpaper_5" src="@drawable/valkyos_wallpaper_5" thumbnail="@drawable/valkyos_wallpaper_5_thumb" />
+        <static-wallpaper id="valkyos_wallpaper_6" src="@drawable/valkyos_wallpaper_6" thumbnail="@drawable/valkyos_wallpaper_6_thumb" />
+        <static-wallpaper id="valkyos_wallpaper_7" src="@drawable/valkyos_wallpaper_7" thumbnail="@drawable/valkyos_wallpaper_7_thumb" />
+    </category>
+</wallpapers>

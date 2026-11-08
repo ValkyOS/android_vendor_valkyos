@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.valkyos.wallpapers">
+
+    <application
+        android:label="@string/app_name"
+        android:allowBackup="false">
+
+        <!-- Marker used by the wallpaper picker to find the partner package. -->
+        <receiver
+            android:name=".PartnerReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.android.launcher3.action.PARTNER_CUSTOMIZATION" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

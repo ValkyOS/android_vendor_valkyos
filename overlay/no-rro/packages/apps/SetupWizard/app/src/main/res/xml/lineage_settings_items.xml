@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- ValkyOS: copy of SetupWizard res/xml/lineage_settings_items.xml (lineage-24.0)
+     with the LineageOS statistics switch hidden. -->
+<ItemGroup xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchItem
+        android:id="@+id/metrics_item"
+        android:layout="@layout/setup_items_switch"
+        android:visible="false"
+        android:title="@string/services_metrics_title" />
+
+    <SwitchItem
+        android:id="@+id/nav_keys_item"
+        android:layout="@layout/setup_items_switch"
+        android:title="@string/services_os_nav_keys_label" />
+
+</ItemGroup>

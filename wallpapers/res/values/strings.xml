@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name" translatable="false">ValkyOS Wallpapers</string>
+    <string name="valkyos_category" translatable="false">ValkyOS</string>
+    <!-- The default wallpaper is ValkyOS 1, listed below; do not show it twice. -->
+    <bool name="default_wallpapper_hidden">true</bool>
+</resources>

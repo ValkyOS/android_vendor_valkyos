@@ -1,0 +1,19 @@
+// Copyright (C) 2026 The ValkyOS Project
+// SPDX-License-Identifier: Apache-2.0
+
+// ValkyOS wallpapers. Partner customization package read by the wallpaper
+// picker (WallpaperPicker2 DefaultPartnerProvider, res/xml/wallpapers.xml).
+// The picker only uses the first partner package it finds, so it replaces the
+// LineageOS one (Backgrounds, org.lineageos.backgrounds).
+android_app {
+    name: "ValkyOSWallpapers",
+    srcs: ["src/**/*.java"],
+    resource_dirs: ["res"],
+    certificate: "platform",
+    product_specific: true,
+    overrides: ["Backgrounds"],
+    sdk_version: "current",
+    optimize: {
+        enabled: false,
+    },
+}

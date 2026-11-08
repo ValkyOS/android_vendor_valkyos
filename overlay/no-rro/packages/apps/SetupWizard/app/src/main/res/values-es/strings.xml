@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="setup_welcome_message">Bienvenida/o a ValkyOS</string>
+    <string name="intro_restore_subtitle">Si tienes una copia de seguridad Seedvault de ValkyOS o de cualquier otro sistema operativo, puedes restaurarla aquí.</string>
+</resources>

@@ -1,0 +1,9 @@
+// Copyright (C) 2026 The ValkyOS Project
+// SPDX-License-Identifier: Apache-2.0
+
+// Runtime overlay for framework-res. LineageOS overlays (vendor/lineage/overlay/common)
+// become auto-generated RROs with priority 0/1, so this one (999) wins.
+runtime_resource_overlay {
+    name: "ValkyOSFrameworkOverlay",
+    product_specific: true,
+}
