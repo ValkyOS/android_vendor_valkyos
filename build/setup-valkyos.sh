@@ -11,8 +11,6 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PATCH_DIR="$SCRIPT_DIR/patches"
 ROM_ROOT="${1:-$(pwd)}"
 
-AV_REVISION="1c5914737a1a89d0c5b3e52e8289019eab3f8cbf"
-
 ZXING_AAR_URL="https://repo.maven.apache.org/maven2/com/journeyapps/zxing-android-embedded/4.3.0/zxing-android-embedded-4.3.0.aar"
 ZXING_AAR_SHA256="4ab03353127c34e55cbb80fbc9a34031decbcfb1ec5e8f991944d2d494621a33"
 ZXING_JAR_URL="https://repo.maven.apache.org/maven2/com/google/zxing/core/3.4.1/core-3.4.1.jar"
@@ -31,42 +29,9 @@ command -v python3 >/dev/null 2>&1 || fail "se necesita python3"
 
 [[ -d "$ROM_ROOT/.repo" ]] || fail "$ROM_ROOT no es un árbol repo"
 
-echo "== Huellas de los parches =="
-(cd "$PATCH_DIR" && sha256sum -c SHA256SUMS)
-
-apply_compat_patch() {
-    local repo_path="$1"
-    local expected_revision="$2"
-    local patch_file="$3"
-    local actual_revision
-
-    [[ -d "$ROM_ROOT/$repo_path/.git" ]] || fail "falta $repo_path"
-    actual_revision="$(git -C "$ROM_ROOT/$repo_path" rev-parse HEAD)"
-    [[ "$actual_revision" == "$expected_revision" ]] ||
-        fail "$repo_path está en $actual_revision; se esperaba $expected_revision"
-
-    if git -C "$ROM_ROOT/$repo_path" apply --reverse --check "$patch_file"; then
-        echo "YA_APLICADO: $repo_path"
-    elif git -C "$ROM_ROOT/$repo_path" apply --check "$patch_file"; then
-        git -C "$ROM_ROOT/$repo_path" apply "$patch_file"
-        echo "APLICADO: $repo_path"
-    else
-        fail "el parche no aplica limpiamente en $repo_path"
-    fi
-
-    git -C "$ROM_ROOT/$repo_path" apply --reverse --check "$patch_file" ||
-        fail "no se pudo confirmar el parche en $repo_path"
-    git -C "$ROM_ROOT/$repo_path" diff --check
-}
-
-echo
-echo "== Parches de compatibilidad =="
-apply_compat_patch \
-    "frameworks/av" \
-    "$AV_REVISION" \
-    "$PATCH_DIR/frameworks-av-libheif.patch"
-# frameworks/native (Sensors permission and the Android 16 ABI bridge) is a
-# ValkyOS fork since November 2026: those patches are already in it.
+# frameworks/av (libheif) and frameworks/native (Sensors permission and the
+# Android 16 ABI bridge) are ValkyOS forks since November 2026: the patches in
+# build/patches are already in them and are kept only for reference.
 
 # Motorola camera helper built against the Android 15/16 libgui ABI. LineageOS
 # provides libgui_buffer_shim_vendor, which exports the old
