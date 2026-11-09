@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- ValkyOS privacy statement (ValkyOS collects no data). -->
+    <string name="services_privacy_policy_uri" translatable="false"><b>https://github.com/ValkyOS/android_manifest#privacy</b></string>
+    <!-- Color of the setup logo: ValkyOS violet instead of the LineageOS teal. -->
+    <color name="lineage_accent">#6C5CE0</color>
+</resources>

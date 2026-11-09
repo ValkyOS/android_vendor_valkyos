@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- ValkyOS: Updater without an update server for now. With an empty URL the
+     update check fails on the device (the app shows the check error) and no
+     request is made. LineageOS links point to the ValkyOS GitHub instead. -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="updater_server_url" translatable="false"></string>
+    <string name="header_build_version" translatable="false">ValkyOS</string>
+    <string name="header_download_url" translatable="false">github.com/ValkyOS</string>
+    <string name="menu_downloads_url" translatable="false">https://github.com/ValkyOS</string>
+    <string name="menu_changelog_url" translatable="false">https://github.com/ValkyOS/android_manifest/commits/main</string>
+    <string name="report_issue_url" translatable="false">https://github.com/ValkyOS/android_manifest/issues</string>
+    <string name="blocked_update_info_url" translatable="false">https://github.com/ValkyOS</string>
+
+    <!-- Header colors: ValkyOS violet instead of the LineageOS teal. -->
+    <color name="brand_primary">#4A3AB8</color>
+    <color name="brand_pattern">#6C5CE0</color>
+    <color name="on_brand_surface">#FFFFFF</color>
+    <color name="brand_sheen">#EADDFF</color>
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- ValkyOS: setup wizard logo (same name and 512x260 size as the LineageOS
+     logo it replaces). ValkyOS symbol. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="512dp"
+    android:height="260dp"
+    android:viewportWidth="512"
+    android:viewportHeight="260">
+  <group
+      android:scaleX="0.421053"
+      android:scaleY="0.421053"
+      android:translateX="40.421"
+      android:translateY="-70.000">
+    <path
+        android:fillColor="@color/lineage_accent"
+        android:pathData="M176,190C337,210 456,322 512,760 427,594 353,463 284,355 247,297 210,239 176,190Z" />
+    <path
+        android:fillColor="@color/lineage_accent"
+        android:pathData="M848,190C687,210 568,322 512,760 597,594 671,463 740,355 777,297 814,239 848,190Z" />
+  </group>
+</vector>
