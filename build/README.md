@@ -1,28 +1,21 @@
-# Reproducible Android 17 setup
+# Build notes
 
-After syncing the manifest, run from the Android source root:
+ValkyOS needs **no setup script** after syncing: every change lives in the
+repositories pinned by the manifest.
 
-```bash
-bash vendor/valkyos/build/setup-valkyos.sh "$PWD"
-```
+Until November 2026 `setup-valkyos.sh` patched the tree after `repo sync`.
+Those changes now live here:
 
-The script:
+| Change | Now in |
+| --- | --- |
+| `media/libheif` (Android 16 vendor blobs) | ValkyOS fork `android_frameworks_av` |
+| Sensors permission (GrapheneOS) and the Android 16 `SurfaceComposerClient` ABI bridge | ValkyOS fork `android_frameworks_native` |
+| Vanadium overrides and WebView provider list | `vanadium-overrides/` and `overlay/ValkyOSFrameworkOverlay` (Vanadium is synced to `vendor/vanadium`) |
+| Motorola camera helper (`libgui_buffer_shim_vendor`) | eqe device tree (blob fixup) and eqe vendor repository |
+| Moto Camera SELinux domain (portrait) | eqe device tree and the eqe fork of `device/qcom/sepolicy_vndr` |
+| OpenEUICC Maven dependencies | eqe device tree (`openeuicc/`) |
 
-1. (frameworks/av and frameworks/native are ValkyOS forks since November 2026:
-   libheif, the Sensors permission and the Android 16 `SurfaceComposerClient`
-   ABI bridge are already in them, so the script no longer patches them; the
-   files in `patches/` are kept for reference);
-3. (the Motorola camera helper fix and the Moto Camera SELinux domain moved to
-   the eqe repositories: blob fixup and sepolicy in the device tree, the fixed
-   blob in the vendor repository and the xDSP exception in the eqe fork of
-   device/qcom/sepolicy_vndr);
-4. installs the pinned OpenEUICC Maven dependencies from Maven Central;
-5. hides the historical OpenEUICC template so Soong sees one definition;
-6. verifies every downloaded file by SHA-256.
-
-It can be run again safely. Already applied patches and valid dependencies are
-verified instead of being applied or downloaded twice.
-
-The framework changes come from the ValkyOS forks pinned in the manifest.
+`patches/` keeps the original framework patches for reference only; nothing
+applies them.
 
 This directory intentionally contains no signing keys or other secrets.

@@ -14,7 +14,7 @@ inherits `vendor/valkyos/config/common.mk`.
 | Path | What it does |
 | --- | --- |
 | `bootanimation/` | Boot animation, 1220 x 2712 at 30 FPS. The device selects it with `TARGET_BOOTANIMATION := vendor/valkyos/bootanimation/bootanimation.zip`. |
-| `build/` | `setup-valkyos.sh`: reproducible Android 17 setup (see `build/README.md`). |
+| `build/` | Notes: no setup script is needed after syncing; where the old setup steps live now (see `build/README.md`). Original framework patches kept for reference. |
 | `overlay/LineagePlatformOverlay/` | Runtime overlay for lineage-sdk: ValkyOS instead of LineageOS in every lineage-sdk string (About phone labels, permissions), all languages. |
 | `overlay/ValkyOSFrameworkOverlay/` | Runtime overlay for framework-res (priority 999): default wallpaper and the WebView provider list (only Vanadium). LineageOS overlays become auto-generated runtime overlays with priority 0/1, so a static overlay is not enough here. |
 | `overlay/no-rro/` | Static overlays: ValkyOS names in LineageParts and the setup wizard (all languages; setup logo and color), LineageOS statistics hidden (Trust, setup wizard and the LineageParts catalog used by the Settings search) and their upload URL emptied, and the Updater (System updates) without an update server, with ValkyOS names, mark, colors and links. |
