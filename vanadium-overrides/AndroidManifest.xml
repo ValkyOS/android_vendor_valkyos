@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The ValkyOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Empty package: it only carries the Vanadium overrides of the build. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.valkyos.vanadium.overrides">
+    <application android:hasCode="false" android:label="ValkyOS Vanadium" />
+</manifest>

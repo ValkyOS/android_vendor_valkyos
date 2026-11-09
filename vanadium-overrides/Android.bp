@@ -1,0 +1,18 @@
+// Copyright (C) 2026 The ValkyOS Project
+// SPDX-License-Identifier: Apache-2.0
+
+// Vanadium (GrapheneOS browser and WebView, vendor/vanadium) replaces the
+// LineageOS browser (Jelly, Browser2) and WebView. Vanadium's own Android.bp is
+// used unchanged, so this empty package carries the overrides: when it is
+// installed, the overridden modules are left out of the build.
+android_app {
+    name: "ValkyOSVanadiumOverrides",
+    sdk_version: "current",
+    product_specific: true,
+    certificate: "platform",
+    overrides: [
+        "Jelly",
+        "Browser2",
+        "webview",
+    ],
+}

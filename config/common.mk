@@ -21,14 +21,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     AppStore
 
-# Vanadium (GrapheneOS browser and WebView, external/vanadium). Replaces the
-# LineageOS browser (Jelly) and WebView: setup-valkyos.sh adds the overrides to
-# external/vanadium/Android.bp and the overlay below makes app.vanadium.webview
-# the only WebView provider. Presigned by GrapheneOS, so the App Store updates it.
+# Vanadium (GrapheneOS browser and WebView). The manifest places it in
+# vendor/vanadium, where android.ext.adservices is visible (//vendor), so its
+# Android.bp is used unchanged. ValkyOSVanadiumOverrides leaves the LineageOS
+# browser (Jelly, Browser2) and WebView out, and ValkyOSFrameworkOverlay makes
+# app.vanadium.webview the only WebView provider. Presigned by GrapheneOS, so
+# the App Store updates it.
 PRODUCT_PACKAGES += \
     TrichromeChrome \
     TrichromeWebView \
-    VanadiumConfig
+    VanadiumConfig \
+    ValkyOSVanadiumOverrides
 
 # Static overlays that must win over vendor/lineage/overlay/common (this file is
 # inherited after LineageOS, so DEVICE_PACKAGE_OVERLAYS is used for priority).
