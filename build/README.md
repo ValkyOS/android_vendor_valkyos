@@ -15,6 +15,9 @@ Those changes now live here:
 | Moto Camera SELinux domain (portrait) | eqe device tree and the eqe fork of `device/qcom/sepolicy_vndr` |
 | OpenEUICC Maven dependencies | eqe device tree (`openeuicc/`) |
 
+`tasks/valkyos.mk` names the update package `ValkyOS-<version>.zip` (a hard
+link of the LineageOS `lineage-<version>.zip`, built by `m bacon`).
+
 `patches/` keeps the original framework patches for reference only; nothing
 applies them.
 
