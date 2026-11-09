@@ -40,3 +40,4 @@ nota=permiso Sensores (OTHER_SENSORS); requiere IPackageManagerNative.onDeniedSp
 actualizacion=2026-11-07 (parche de seguridad 2026-11-01 de LineageOS)
 frameworks/av=1c5914737a1a89d0c5b3e52e8289019eab3f8cbf (frameworks-av-libheif.patch: git apply --check OK)
 frameworks/native=a96adf2c6e62dbb22299cd83bbb9ea4bc569e985 (frameworks-native-a16-abi.patch y frameworks-native-sensors.patch: git apply --check OK)
+nota=2026-11-09: frameworks-native-a16-abi.patch y frameworks-native-sensors.patch ya estan en el fork ValkyOS/android_frameworks_native (valkyos-17 fecb116c); setup-valkyos.sh ya no los aplica. Se conservan como referencia.

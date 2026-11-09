@@ -12,7 +12,6 @@ PATCH_DIR="$SCRIPT_DIR/patches"
 ROM_ROOT="${1:-$(pwd)}"
 
 AV_REVISION="1c5914737a1a89d0c5b3e52e8289019eab3f8cbf"
-NATIVE_REVISION="a96adf2c6e62dbb22299cd83bbb9ea4bc569e985"
 
 ZXING_AAR_URL="https://repo.maven.apache.org/maven2/com/journeyapps/zxing-android-embedded/4.3.0/zxing-android-embedded-4.3.0.aar"
 ZXING_AAR_SHA256="4ab03353127c34e55cbb80fbc9a34031decbcfb1ec5e8f991944d2d494621a33"
@@ -66,17 +65,8 @@ apply_compat_patch \
     "frameworks/av" \
     "$AV_REVISION" \
     "$PATCH_DIR/frameworks-av-libheif.patch"
-apply_compat_patch \
-    "frameworks/native" \
-    "$NATIVE_REVISION" \
-    "$PATCH_DIR/frameworks-native-a16-abi.patch"
-# Sensors permission (GrapheneOS OTHER_SENSORS): sensors without their own
-# permission require android.permission.OTHER_SENSORS; denials are reported to
-# the system so it can notify the user.
-apply_compat_patch \
-    "frameworks/native" \
-    "$NATIVE_REVISION" \
-    "$PATCH_DIR/frameworks-native-sensors.patch"
+# frameworks/native (Sensors permission and the Android 16 ABI bridge) is a
+# ValkyOS fork since November 2026: those patches are already in it.
 
 # Motorola camera helper built against the Android 15/16 libgui ABI. LineageOS
 # provides libgui_buffer_shim_vendor, which exports the old
