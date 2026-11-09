@@ -12,8 +12,10 @@ The script:
    libheif, the Sensors permission and the Android 16 `SurfaceComposerClient`
    ABI bridge are already in them, so the script no longer patches them; the
    files in `patches/` are kept for reference);
-3. (the Motorola camera helper fix moved to the eqe repositories: blob fixup in
-   the device tree and the fixed blob in the vendor repository);
+3. (the Motorola camera helper fix and the Moto Camera SELinux domain moved to
+   the eqe repositories: blob fixup and sepolicy in the device tree, the fixed
+   blob in the vendor repository and the xDSP exception in the eqe fork of
+   device/qcom/sepolicy_vndr);
 4. installs the pinned OpenEUICC Maven dependencies from Maven Central;
 5. hides the historical OpenEUICC template so Soong sees one definition;
 6. verifies every downloaded file by SHA-256.
