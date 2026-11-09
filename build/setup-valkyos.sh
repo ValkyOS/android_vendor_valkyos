@@ -33,55 +33,8 @@ command -v python3 >/dev/null 2>&1 || fail "se necesita python3"
 # Android 16 ABI bridge) are ValkyOS forks since November 2026: the patches in
 # build/patches are already in them and are kept only for reference.
 
-# Motorola camera helper built against the Android 15/16 libgui ABI. LineageOS
-# provides libgui_buffer_shim_vendor, which exports the old
-# BufferItemConsumer::acquireBuffer/releaseBuffer signatures and links to the
-# real libgui_vendor. A prebuilt's shared_libs list does not change DT_NEEDED,
-# so the blob itself must load the shim instead of libgui_vendor directly.
-CAMERA_HELPER="$ROM_ROOT/vendor/motorola/eqe/proprietary/vendor/lib64/libmot_chi_desktop_helper.so"
-CAMERA_HELPER_ORIGINAL_SHA256="45534e75055029baefbee6a0ce2fa4ce0f1385fce643230f57b48ccfe68730f6"
-
-find_patchelf() {
-    if command -v patchelf >/dev/null 2>&1; then
-        command -v patchelf
-    elif [[ -x "$ROM_ROOT/prebuilts/extract-tools/linux-x86/bin/patchelf" ]]; then
-        echo "$ROM_ROOT/prebuilts/extract-tools/linux-x86/bin/patchelf"
-    else
-        fail "se necesita patchelf"
-    fi
-}
-
-fix_camera_helper_abi() {
-    local patchelf_bin needed
-    [[ -f "$CAMERA_HELPER" ]] || fail "falta $CAMERA_HELPER"
-    grep -q '"libgui_buffer_shim_vendor"' "$ROM_ROOT/vendor/motorola/eqe/Android.bp" ||
-        fail "vendor/motorola/eqe/Android.bp no declara libgui_buffer_shim_vendor"
-    patchelf_bin="$(find_patchelf)"
-    needed="$("$patchelf_bin" --print-needed "$CAMERA_HELPER")"
-
-    if grep -qx 'libgui_buffer_shim_vendor.so' <<<"$needed" &&
-       ! grep -qx 'libgui_vendor.so' <<<"$needed"; then
-        echo "YA_APLICADO: camara (libgui_buffer_shim_vendor)"
-        return
-    fi
-
-    printf '%s  %s\n' "$CAMERA_HELPER_ORIGINAL_SHA256" "$CAMERA_HELPER" | sha256sum -c - ||
-        fail "libmot_chi_desktop_helper.so no es la version esperada"
-    grep -qx 'libgui_vendor.so' <<<"$needed" ||
-        fail "el helper de camara no depende de libgui_vendor.so"
-
-    "$patchelf_bin" --replace-needed libgui_vendor.so libgui_buffer_shim_vendor.so \
-        "$CAMERA_HELPER"
-    needed="$("$patchelf_bin" --print-needed "$CAMERA_HELPER")"
-    grep -qx 'libgui_buffer_shim_vendor.so' <<<"$needed" &&
-        ! grep -qx 'libgui_vendor.so' <<<"$needed" ||
-        fail "no se pudo confirmar el cambio del helper de camara"
-    echo "APLICADO: camara (libgui_buffer_shim_vendor)"
-}
-
-echo
-echo "== Compatibilidad de camara =="
-fix_camera_helper_abi
+# The Motorola camera helper (libmot_chi_desktop_helper.so) now comes already
+# fixed from the eqe repositories (blob fixup in the device tree, November 2026).
 
 # Moto Camera (and its Camera AI component) use ArcSoft post-processing
 # (portrait/blur). On Android 17 they run as priv_app_36, so the device policy

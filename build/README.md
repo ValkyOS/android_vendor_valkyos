@@ -12,10 +12,8 @@ The script:
    libheif, the Sensors permission and the Android 16 `SurfaceComposerClient`
    ABI bridge are already in them, so the script no longer patches them; the
    files in `patches/` are kept for reference);
-3. makes the Motorola camera helper (`libmot_chi_desktop_helper.so`) load
-   LineageOS `libgui_buffer_shim_vendor` instead of `libgui_vendor`, restoring
-   the Android 15/16 `BufferItemConsumer` ABI (the original blob is verified by
-   SHA-256 first; needs `patchelf`);
+3. (the Motorola camera helper fix moved to the eqe repositories: blob fixup in
+   the device tree and the fixed blob in the vendor repository);
 4. installs the pinned OpenEUICC Maven dependencies from Maven Central;
 5. hides the historical OpenEUICC template so Soong sees one definition;
 6. verifies every downloaded file by SHA-256.
