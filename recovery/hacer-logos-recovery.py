@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-# ValkyOS: replace the LineageOS logo in the recovery images (xxhdpi, 768x480)
-# with the ValkyOS symbol (branding/valkyos-symbol.svg), drawn here with Pillow.
+# ValkyOS: replace the LineageOS logo in the recovery images with the ValkyOS
+# symbol (branding/valkyos-symbol.svg), drawn here with Pillow. Works for every
+# recovery density: the LineageOS images share one layout (xxhdpi = 768x480)
+# scaled by width (mdpi 256, hdpi 384, xhdpi 512, xxhdpi 768, xxxhdpi 1024).
 # Usage: python3 hacer-logos-recovery.py <folder with orig_*.png> <output folder>
 import os
 import sys
@@ -78,15 +80,17 @@ def draw_symbol(height):
 def main():
     src, dst = sys.argv[1], sys.argv[2]
     os.makedirs(dst, exist_ok=True)
-    sym = draw_symbol(118)
-    sw, sh = sym.size
     for name in ("logo_image", "logo_image_switch", "fastbootd"):
         im = Image.open(os.path.join(src, "orig_%s.png" % name)).convert("RGB")
-        if im.size != (768, 480):
+        w, h = im.size
+        if w * 480 != h * 768:
             sys.exit("SIZE_ERROR %s %s" % (name, im.size))
-        # Clear the LineageOS logo (x 292-476, y 203-276) inside the pill.
-        im.paste((0, 0, 0), (286, 197, 483, 283))
-        im.paste(sym, (384 - sw // 2, 240 - sh // 2), sym)
+        k = w / 768.0
+        sym = draw_symbol(int(round(118 * k)))
+        sw, sh = sym.size
+        # Clear the LineageOS logo (xxhdpi: x 292-476, y 203-276) inside the pill.
+        im.paste((0, 0, 0), tuple(int(round(v * k)) for v in (286, 197, 483, 283)))
+        im.paste(sym, (int(round(384 * k)) - sw // 2, int(round(240 * k)) - sh // 2), sym)
         im = im.quantize(colors=128, method=Image.MEDIANCUT, dither=Image.NONE)
         im.save(os.path.join(dst, "%s.png" % name), optimize=True)
         print("OK", name)

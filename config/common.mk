@@ -38,7 +38,19 @@ PRODUCT_PACKAGES += \
 DEVICE_PACKAGE_OVERLAYS += vendor/valkyos/overlay/no-rro
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += vendor/valkyos/overlay/no-rro
 
-# Recovery: ValkyOS symbol instead of the LineageOS logo. The build copies these
-# images over bootable/recovery/res-<density> (eqe uses xxhdpi). Made with
+# Recovery: ValkyOS symbol instead of the LineageOS logo, for every recovery
+# density. The build copies vendor/valkyos/recovery/<density>/res over
+# bootable/recovery/res-<density>. $(recovery_density) is expanded later, by
+# build/make/core/Makefile, once it is known (if it were empty, the wildcard
+# gives nothing and the LineageOS images stay). Made with
 # recovery/hacer-logos-recovery.py from the LineageOS originals.
-TARGET_PRIVATE_RES_DIRS += vendor/valkyos/recovery/res
+TARGET_PRIVATE_RES_DIRS += $(wildcard vendor/valkyos/recovery/$(recovery_density)/res)
+
+# Boot animation (bootanimation/): ValkyOS logo on black, pre-generated for
+# screen widths 720, 1080, 1220 and 1440. The one matching TARGET_SCREEN_WIDTH
+# is used (1080 otherwise; the logo stays centered and whole on any width).
+# LineageOS installs it through its own bootanimation.zip module. "=" keeps the
+# width unexpanded until LineageOS reads TARGET_BOOTANIMATION (after the device
+# configuration), and a device tree may still set its own.
+VALKYOS_BOOTANIMATION_WIDTHS := 720 1080 1220 1440
+TARGET_BOOTANIMATION ?= vendor/valkyos/bootanimation/bootanimation-$(if $(filter $(VALKYOS_BOOTANIMATION_WIDTHS),$(TARGET_SCREEN_WIDTH)),$(TARGET_SCREEN_WIDTH),1080).zip
